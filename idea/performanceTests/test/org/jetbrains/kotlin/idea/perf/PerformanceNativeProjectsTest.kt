@@ -136,7 +136,7 @@ class PerformanceNativeProjectsTest : AbstractPerformanceProjectsTest() {
         enableCommonizer: Boolean,
         note: String = ""
     ): Project {
-        val templateRoot = File("idea/testData/perfTest/native/").resolve(templateName)
+        val templateRoot = File("/Users/dmitriy.dolovov/work/kt/kotlin/idea/testData/perfTest/native/").resolve(templateName)
         val projectRoot = FileUtil.createTempDirectory("project", "", false)
 
         templateRoot.walkTopDown()
