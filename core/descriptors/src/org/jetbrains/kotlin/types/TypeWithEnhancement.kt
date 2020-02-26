@@ -100,3 +100,15 @@ abstract class FlexibleTypeWithEnhancement(
         enhancement: KotlinType
     ): FlexibleTypeWithEnhancement
 }
+
+fun KotlinType.getEnhancement(): KotlinType? = when (this) {
+    is TypeWithEnhancement -> enhancement
+    else -> null
+}
+
+fun KotlinType.unwrapEnhancement(): KotlinType = getEnhancement() ?: this
+
+fun UnwrappedType.inheritEnhancement(origin: KotlinType): UnwrappedType = when (origin) {
+    is TypeWithEnhancement -> origin.wrapEnhancementIn(this, origin.enhancement)
+    else -> this
+}

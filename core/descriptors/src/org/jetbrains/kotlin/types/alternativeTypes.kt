@@ -24,6 +24,11 @@ class FlexibleTypeWithAlternative(
     mainType: FlexibleType,
     alternative: KotlinType
 ) : FlexibleTypeWithEnhancement(mainType, alternative), TypeWithAlternative {
+    override val lowerBound: SimpleTypeWithAlternative
+        get() = wrapEnhancementIn(super.lowerBound, enhancement.lowerIfFlexible()) as SimpleTypeWithAlternative
+    override val upperBound: SimpleTypeWithAlternative
+        get() = wrapEnhancementIn(super.upperBound, enhancement.upperIfFlexible()) as SimpleTypeWithAlternative
+
     override fun createFlexibleTypeWithEnhancement(origin: FlexibleType, enhancement: KotlinType): FlexibleTypeWithAlternative =
         FlexibleTypeWithAlternative(origin, enhancement)
 }

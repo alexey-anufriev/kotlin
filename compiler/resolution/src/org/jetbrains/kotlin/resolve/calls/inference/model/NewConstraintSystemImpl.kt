@@ -374,7 +374,7 @@ class NewConstraintSystemImpl(
         baseType: KotlinTypeMarker,
         replacement: KotlinTypeMarker,
     ): KotlinTypeMarker {
-        require(baseType is SimpleType) { "$baseType should be SimpleType" } // Unwrapped?
+        require(baseType is UnwrappedType) { "$baseType should be SimpleType" }
         require(replacement is KotlinType) { "$replacement should be KotlinType" }
         return baseType.addAlternative(replacement)
     }

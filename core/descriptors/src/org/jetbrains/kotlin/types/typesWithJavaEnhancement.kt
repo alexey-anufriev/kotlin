@@ -27,15 +27,6 @@ class FlexibleTypeWithJavaEnhancement(
         FlexibleTypeWithJavaEnhancement(origin, enhancement)
 }
 
-fun KotlinType.getEnhancement(): KotlinType? = when (this) {
-    is TypeWithJavaEnhancement -> enhancement
-    else -> null
-}
-
-fun KotlinType.unwrapEnhancement(): KotlinType = getEnhancement() ?: this
-
-fun UnwrappedType.inheritEnhancement(origin: KotlinType): UnwrappedType = wrapEnhancement(origin.getEnhancement())
-
 fun UnwrappedType.wrapEnhancement(enhancement: KotlinType?): UnwrappedType {
     if (enhancement == null) {
         return this
